@@ -19,6 +19,7 @@ dependencies:
       - mujoco==2.2.2
       - mujoco-py==2.1.2.14
       - cython==0.29.36
+      - patchelf-0.17.2.1
   # - pytorch=2.0
   # - pytorch-cuda=11.8
   # - tensorflow-gpu==1.4.1
