@@ -18,8 +18,8 @@ class MainConfig:
     seed: int = 1
 
     num_epochs: int = 500
-    num_train_tasks: int = 100
-    num_test_tasks: int = 100
+    num_train_tasks: int = 25
+    num_test_tasks: int = 25
     encoder_hidden_size: int = 200
     net_size: int = 300
     num_steps_per_epoch: int = 2000
@@ -238,15 +238,16 @@ def main(
     )
     # create multi-task environment and sample tasks
     env_sampler = SetTaskSampler(
-        # env_class,
-        HalfCheetahVelEnv,
+        env_class,
+        # HalfCheetahVelEnv,
         wrapper=lambda env, _: normalize(
             GymEnv(env, max_episode_length=max_episode_length)
         ),
     )
     env = env_sampler.sample(num_train_tasks)
     test_env_sampler = SetTaskSampler(
-        HalfCheetahVelEnv,
+        env_class,
+        # HalfCheetahVelEnv,
         wrapper=lambda env, _: normalize(
             GymEnv(env, max_episode_length=max_episode_length)
         ),
