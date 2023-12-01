@@ -1,6 +1,7 @@
 name: garage-pearl
 channels:
   - nvidia
+  - pytorch
   - conda-forge
   - menpo
   - anaconda
