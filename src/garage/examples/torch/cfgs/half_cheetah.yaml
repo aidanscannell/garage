@@ -1,0 +1,31 @@
+defaults:
+  - train_config
+  - override hydra/launcher: slurm
+  - _self_
+
+main_config:
+  _target_: "cluster_train.main"
+  # _target_: "__main__.main"
+  env_name: "HalfCheetahV2"
+  seed: 42
+
+
+wandb_group: ${main_config.env_name}
+wandb_project_name: "adaptive-context-rl"
+use_wandb: True
+wandb_run_name: TrMRL-seed=${main_config.seed}-${now:%Y-%m-%d_%H-%M-%S}
+wandb_tags:
+  - "PEARL"
+  - ${main_config.env_name}
+
+hydra:
+  run:
+    dir: output/${hydra.job.name}/${now:%Y-%m-%d_%H-%M-%S}
+  job:
+    chdir: true
+  sweep:
+    dir: ${hydra.run.dir}
+    subdir: ${hydra.job.num}
+  job_logging:
+    root:
+      level: INFO # DEBUG
