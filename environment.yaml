@@ -15,7 +15,7 @@ dependencies:
   - pip
   - pip:
       # - garage
-      - -e .
+      - -e ".[mujoco, gym]"
       # - -e git+https://github.com/Farama-Foundation/d4rl.git@305676ebb2e26582d50c6518c8df39fd52dea587#egg=D4RL
       # - mujoco==2.2.2
       # - mujoco-py==2.1.2.14
