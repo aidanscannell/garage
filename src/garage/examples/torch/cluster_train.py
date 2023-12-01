@@ -330,7 +330,7 @@ def hydra_wrapper(cfg: TrainConfig):
             project=cfg.wandb_project_name,
             group=cfg.wandb_group,
             tags=cfg.wandb_tags,
-            # config=cfg_dict,
+            config=cfg_dict,
             name=cfg.wandb_run_name,
             # monitor_gym=cfg.monitor_gym,
             save_code=True,
