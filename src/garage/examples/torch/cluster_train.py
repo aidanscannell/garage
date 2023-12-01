@@ -146,7 +146,7 @@ def main(
 
             self.num_tasks = 25
             self.task_idxs = np.arange(self.num_tasks)
-            self.task_idx: = task_idx
+            self.task_idx = task_idx
             self._reset(ind=self.task_idx)
 
         # ind is from 0 to 24
@@ -218,7 +218,6 @@ def main(
         def __init__(self, task=0):
             env = gym.make("walker2d-medium-v2")
             super().__init__(env=env, task_idx=task)
-
 
     if env_name in "HopperV2":
         env_class = HopperV2
