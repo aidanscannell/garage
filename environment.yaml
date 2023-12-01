@@ -4,9 +4,14 @@ channels:
   # - pytorch
   # - defaults
   - conda-forge
-  # - anaconda
+  - menpo
+  - anaconda
 dependencies:
   - python=3.9
+  - glew
+  - mesalib
+  - mesa-libgl-cos6-x86_64
+  - glfw3
   - pip
   - pip:
       - garage
