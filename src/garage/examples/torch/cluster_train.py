@@ -115,8 +115,8 @@ def main(
         use_gpu (bool): Whether or not to use GPU for training.
 
     """
-    import gym
     import d4rl
+    import gym
     import numpy as np
 
     from garage.envs import GymEnv, normalize
