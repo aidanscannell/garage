@@ -206,13 +206,21 @@ def main(
 
 
     class MassDampingENVInvPend(gym.Env):
-        def __init__(self, env, task_idx: int = 0):
+        def __init__(self, env, task_idx: int = 0, max_delta=0.2):
+            # self._env = env
+            # self.action_space = env.action_space
+            # self.observation_space = env.observation_space
+            # self.mass_ratios = (0.25, 0.5, 0.75, 1, 1.5, 2, 3, 5)
+            # self.original_body_mass = env.env.wrapped_env.model.body_mass.copy()
+            # self.original_damping = env.env.wrapped_env.model.dof_damping.copy()
             self._env = env
             self.action_space = env.action_space
             self.observation_space = env.observation_space
+            self._max_delta = max_delta
             self.mass_ratios = (0.25, 0.5, 0.75, 1, 1.5, 2, 3, 5)
-            self.original_body_mass = env.env.wrapped_env.model.body_mass.copy()
-            self.original_damping = env.env.wrapped_env.model.dof_damping.copy()
+            # self.original_body_mass = env.env.wrapped_env.model.body_mass.copy()
+            self.original_body_mass = env.env.model.body_mass.copy()
+            self._max_episode_steps = 1000
 
             self.num_tasks = 8
             self.task_idxs = np.arange(self.num_tasks)
@@ -226,17 +234,23 @@ def main(
 
             return self._reset(ind=self.task_idx)
 
-        def _reset(self, ind: int):
-            if isinstance(ind, np.ndarray):
-                ind = ind.item()
-            model = self._env.env.wrapped_env.model
+        def _reset(self, ind):
+            model = self._env.env.model
             n_link = model.body_mass.shape[0]
-            ind_mass = ind // 5
             for i in range(n_link):
-                model.body_mass[i] = (
-                    self.original_body_mass[i] * self.mass_ratios[ind_mass]
-                )
+                model.body_mass[i] = self.original_body_mass[i]*self.mass_ratios[ind]
             return self._env.reset()
+        # def _reset(self, ind: int):
+        #     if isinstance(ind, np.ndarray):
+        #         ind = ind.item()
+        #     model = self._env.env.wrapped_env.model
+        #     n_link = model.body_mass.shape[0]
+        #     ind_mass = ind // 5
+        #     for i in range(n_link):
+        #         model.body_mass[i] = (
+        #             self.original_body_mass[i] * self.mass_ratios[ind_mass]
+        #         )
+        #     return self._env.reset()
 
         def step(self, action):
             return self._env.step(action)
