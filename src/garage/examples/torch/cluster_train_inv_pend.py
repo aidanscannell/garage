@@ -235,6 +235,9 @@ def main(
             return self._reset(ind=self.task_idx)
 
         def _reset(self, ind):
+            if isinstance(ind, np.ndarray):
+                ind = ind.item()
+
             model = self._env.env.model
             n_link = model.body_mass.shape[0]
             for i in range(n_link):
