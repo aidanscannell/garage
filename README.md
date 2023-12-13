@@ -4,6 +4,11 @@
 [![codecov](https://codecov.io/gh/rlworkgroup/garage/branch/master/graph/badge.svg)](https://codecov.io/gh/rlworkgroup/garage)
 [![PyPI version](https://badge.fury.io/py/garage.svg)](https://badge.fury.io/py/garage)
 
+# Aidan Note's for L4DC
+See `l4dc-results` for results used in paper. The notebook details how I ran experiments.
+- Conda env in `l4dc_environment.yml`
+- Pip freeze in `l4dc_requirements.txt`
+
 # garage
 
 garage is a toolkit for developing and evaluating reinforcement learning
