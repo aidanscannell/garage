@@ -9,6 +9,8 @@ See `l4dc-results` for results used in paper. The notebook details how I ran exp
 - Conda env in `l4dc_environment.yml`
 - Pip freeze in `l4dc_requirements.txt`
 
+In the TrMRL repo I had to remove `remove_ln` from the command because it caused training to fail.
+
 # garage
 
 garage is a toolkit for developing and evaluating reinforcement learning
